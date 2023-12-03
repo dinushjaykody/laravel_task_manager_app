@@ -9,4 +9,16 @@ class Task extends Model
 {
     use HasFactory;
 
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'completion_status'
+    ];
 }
