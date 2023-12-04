@@ -17,6 +17,7 @@
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <thead class="thead-light">
+                    <th>Task ID</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -25,9 +26,10 @@
                     <tbody>
                     @foreach($tasks as $task)
                         <tr>
+                            <td>{{ $task->id }}</td>
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->description }}</td>
-                            <td>{{ $task->completion_status }}</td>
+                            <td>{{ $task->completion_status ? 'Completed' : 'Not Completed' }}</td>
                             <td>
                                 <a class="btn btn-link"
                                    href="{{ route('tasks.show', ['task' => $task]) }}"> Show

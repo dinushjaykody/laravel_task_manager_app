@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>@yield('title')</h1>
+    <h3>@yield('title')</h3>
     <div>
         @yield('content')
     </div>
