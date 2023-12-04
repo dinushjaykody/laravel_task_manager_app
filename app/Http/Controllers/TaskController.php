@@ -44,6 +44,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = $request->input('title');
         $task->description = $request->input('description');
+        $task->completion_status = $request->input('completion_status');
 
         $task->save();
 
@@ -78,14 +79,16 @@ class TaskController extends Controller
     /**
      * Update a Task.
      *
-     * @param Request $request
+     * @param TaskRequest $request
      *
      * @param Task $task
      *
      * @return $this
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
+        // Validate with Task Request. If validation passed, continue to store the task.
+
         $task->update($request->all());
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully!');
