@@ -86,9 +86,11 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\TaskController;
-Route::get('/', function () {
-    return redirect()->route('tasks.index');
-});
+//Route::get('/', function () {
+//    return redirect()->route('tasks.index');
+//});
+
+
 Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
@@ -98,3 +100,7 @@ Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.upda
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 Route::patch('/tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
 Route::patch('/tasks/{task}/reopen', [TaskController::class, 'reopen'])->name('tasks.reopen');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
