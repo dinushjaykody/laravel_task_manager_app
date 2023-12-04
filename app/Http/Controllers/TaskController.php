@@ -13,6 +13,16 @@ use App\Http\Requests\TaskRequest;
  */
 class TaskController extends Controller
 {
+
+    /**
+     * TaskController constructor.
+     */
+    public function __construct()
+    {
+        // user authentication check.
+        $this->middleware('auth');
+    }
+
     /**
      * Display list of Tasks.
      */
