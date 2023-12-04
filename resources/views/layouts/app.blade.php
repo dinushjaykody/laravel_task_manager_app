@@ -76,9 +76,7 @@
             <h3>@yield('title')</h3>
         </main>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
     </div>
 </body>
 </html>
