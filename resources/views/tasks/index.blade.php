@@ -21,6 +21,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Status</th>
+                    <th>Task Assigned To</th>
                     <th>Actions</th>
                     </thead>
                     <tbody>
@@ -30,6 +31,18 @@
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->description }}</td>
                             <td>{{ $task->completion_status ? 'Completed' : 'Not Completed' }}</td>
+                            <td>
+                                @if ($task->assignedUser)
+                                    {{ $task->assignedUser->name }}
+                                @else
+                                    No User Assigned
+                                @endif
+
+                                <div>
+                                    <a href="{{ route('tasks.assign', ['task' => $task->id]) }}">Assign User</a>
+                                </div>
+
+                            </td>
                             <td>
                                 <a class="btn btn-link"
                                    href="{{ route('tasks.show', ['task' => $task]) }}"> Show
@@ -45,8 +58,6 @@
                                     <button type="submit" class="btn btn-link"> Delete </button>
                                 </form>
                             </td>
-
-                            {{--<a href="{{ route('tasks.show', $task) }}"> {{ $task->title }} </a>--}}
                         </tr>
                     @endforeach
                     </tbody>

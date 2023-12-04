@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
+use App\Models\User;
 
 /**
  * Class TaskController
@@ -118,4 +119,45 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully!');
 
     }
+
+    /**
+     * Show the form to assign user to a task.
+     *
+     * @param Task $task
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function assign(Task $task)
+    {
+        $users = User::all(); // Retrieve all users
+        return view('tasks.assign', compact('task', 'users'));
+    }
+
+    /**
+     * Assign users to a task.
+     *
+     * @param Request $request
+     *
+     * @param Task $task
+     *
+     * @return $this
+     */
+    public function assignUser(Request $request, Task $task)
+    {
+        $validatedData = $request->validate([
+            'assigned_user' => 'required|exists:users,id',
+        ]);
+
+        $user = User::find($validatedData['assigned_user']);
+
+        if ($user) {
+            $task->assigned_to = $user->id;
+            $task->save();
+
+            return redirect()->route('tasks.index')->with('success', 'User assigned to the task successfully!');
+        }
+
+        return redirect()->back()->with('error', 'Failed to assign user to the task.');
+    }
+
 }

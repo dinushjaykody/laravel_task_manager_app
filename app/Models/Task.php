@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Task extends Model
 {
@@ -21,4 +22,14 @@ class Task extends Model
         'description',
         'completion_status'
     ];
+
+    /**
+     * Assigned user for task.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assignedUser()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
+
 }
