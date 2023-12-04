@@ -2,7 +2,7 @@
 - Requirements (Laravel 10 Application)
   - PHP 8.1
 
-## Install Allication
+## Install Application
 1. clone git repo from master run comand
 git clone -b master https://github.com/dinushjaykody/laravel_task_manager_app.git
 
