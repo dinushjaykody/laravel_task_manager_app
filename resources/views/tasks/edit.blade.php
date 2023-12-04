@@ -36,6 +36,20 @@
                     </div>
                     {{--end description--}}
 
+                    {{--start completion status--}}
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Status</label>
+                        <select class="custom-select" name="completion_status" required="">
+                            <option value= 1 {{$task->completion_status == 1 ? 'selected' : ''}}>
+                                Completed
+                            </option>
+                            <option value= 0 {{$task->completion_status == 0 ? 'selected' : ''}}>
+                                Not Completed
+                            </option>
+                        </select>
+                    </div>
+                    {{--end completion status--}}
+
                     <button type="submit" class="btn btn-primary">Update Task</button>
                 </form>
             </div>
