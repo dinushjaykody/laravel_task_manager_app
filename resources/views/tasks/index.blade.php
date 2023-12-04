@@ -51,6 +51,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $tasks->links('vendor.pagination.custom') }}
             </div>
         @else
             <div class="alert alert-warning"> There are no tasks</div>
